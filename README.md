@@ -21,7 +21,7 @@ ts-node main.js
 
 가능한 명령어들 목록 보기
 
-## `ts main.ts -w`
+## `tsc main.ts -w`
 
 자동 감지
 
