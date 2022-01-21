@@ -17,6 +17,6 @@
     
     const user  = new User('Steve','Jobs');
     user.setFirstName = 'kong';
-    console.log(user.fullName);
+        console.log(user.fullName);
 }
 
