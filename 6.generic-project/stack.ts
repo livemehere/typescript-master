@@ -1,17 +1,17 @@
 {
-  interface Stack {
+  interface Stack<T> {
     readonly size: number;
-    push(value: number): void;
-    pop(): OneStack;
+    push(value: T): void;
+    pop(): OneStack<T>;
   }
 
-  type OneStack = {
-    value: string | number;
-    below: OneStack | null;
+  type OneStack<T> = {
+    value: T;
+    below: OneStack<T> | null;
   };
 
-  class MyStack implements Stack {
-    private head: OneStack | null;
+  class MyStack<T> implements Stack<T> {
+    private head: OneStack<T> | null;
     private count: number;
 
     constructor() {
@@ -23,15 +23,15 @@
       return this.count;
     }
 
-    push(value: string | number): void {
+    push(value: T): void {
       if (this.head === null) {
-        const node: OneStack = {
+        const node: OneStack<T> = {
           value: value,
           below: null,
         };
         this.head = node;
       } else {
-        const node: OneStack = {
+        const node: OneStack<T> = {
           value: value,
           below: this.head,
         };
@@ -40,7 +40,7 @@
 
       this.count++;
     }
-    pop(): OneStack {
+    pop(): OneStack<T> {
       if (this.head != null) {
         this.count--;
         const node = this.head;
@@ -53,18 +53,15 @@
     print(): void {}
   }
 
-  const myStack: Stack = new MyStack();
-  myStack.push(1);
-  myStack.push(2);
-  myStack.push(3);
-  console.log(myStack.size);
+  const myStack = new MyStack<string>();
+  myStack.push("ji");
+  myStack.push("kong");
   console.log(myStack.pop());
   console.log(myStack.pop());
-  console.log(myStack.pop());
-  myStack.push(4);
-  myStack.push(8);
-  console.log(myStack.pop());
-  console.log(myStack.size);
-  console.log(myStack.pop()); //error
-  console.log(myStack.size);
+
+  const myStack2 = new MyStack<number>();
+  myStack2.push(1);
+  myStack2.push(4);
+  console.log(myStack2.pop());
+  console.log(myStack2.pop());
 }
